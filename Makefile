@@ -17,7 +17,7 @@ expected:
 results: bin/microscheme
 	rm -rf results
 	mkdir results
-	for s in tests/*.ms; do bin/microsheme < $$s > results/`basename $$s`.out; done
+	for s in tests/*.ms; do bin/microscheme < $$s > results/`basename $$s`.out; done
 
 test.txt: expected results
 	for s in expected/*.ms.out; do if s-diff $$s ./results/`basename $$s`; then echo `basename $$s` passed; else echo `basename $$s` failed; fi done > test.txt
