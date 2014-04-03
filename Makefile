@@ -1,5 +1,11 @@
 
-bin/microscheme: src/microscheme.rkt
+.PHONY: default
+default: bin/microscheme
+
+bin:
+	mkdir bin
+
+bin/microscheme: bin src/microscheme.rkt
 	raco exe -o bin/microscheme src/microscheme.rkt 
 
 
@@ -21,4 +27,4 @@ test: test.txt
 	cat test.txt
 
 clean:
-	rm -rfv bin/microscheme expected results test.txt
+	rm -rfv bin expected results test.txt
