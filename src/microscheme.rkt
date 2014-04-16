@@ -161,7 +161,7 @@
 
 ; <exp> ::= <cexp>
 ;        |  <aexp>
-;        |  (let ([<var> <aexp>]) <exp>)
+;        |  (let ([<var> <exp>]) <exp>)
 
 
 (define (atomic? exp)
