@@ -271,16 +271,6 @@
      (list exp)]))
      
 
-(define fact-program 
-  '((define (fact n)
-      (if (= n 0)
-          1
-          (* n (fact (- n 1)))))
-    
-    (define pi (let ((ans 314)) ans))
-    
-    (fact 10)))
-
 
 ; It's possible to turn a program into a single expression
 ; of "lets and sets":
@@ -305,16 +295,22 @@
   (error "maybe you want to define this one"))
 
 
-(define fp (desugar-program fact-program))
 
-fp
-
-(define np (normalize-program fp))
-
-np
-
+(define (read-all)
+  (define next (read))
+  (if (eof-object? next)
+      '()
+      (cons next (read-all))))
 
 
+(define prog (read-all))
 
+(define exp (program->exp prog))
+
+(define desugared-exp (desugar exp))
+
+(define anf-exp (normalize-term desugared-exp))
+
+; Hook into (modified) anf-cesk.rkt here.
 
 
